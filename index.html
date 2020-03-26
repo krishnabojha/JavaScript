@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aero-fiter</title>
+</head>
+<link rel="stylesheet" type="text/css" href="aeroplane.css">
+</style>
+<body>
+	<div class="windows">
+		<div class="score"></div>
+		<div class="start">
+			<!-- <p class="gameover"></p> -->
+			<p> 
+				click here to start<br>
+
+			</p>
+		</div>
+		<div class="gameArea">   </div>
+	</div>
+</body>
+<script type="text/javascript">
+	
+
+const score= document.querySelector('.score');
+const start= document.querySelector('.start');
+const gameArea =document.querySelector('.gameArea');
+
+
+// console.log(start);
+
+start.addEventListener('click',startGame);
+let player={ speed:5, score:0};
+
+let keys={ArrowUp:false, ArrowDown:false, ArrowLeft:false, ArrowRight:false}
+document.addEventListener('keydown',keyDown);
+document.addEventListener('keyup',keyUp);
+
+
+function keyDown(e){
+	e.preventDefault();
+	// console.log(e.key);
+	keys[e.key]=true;
+	// console.log(keys);
+}
+function keyUp(e){
+	e.preventDefault();
+	// console.log(e.key);
+	keys[e.key]=false;
+	// console.log(keys);
+}
+
+function startGame(){
+
+	// gameArea.classList.remove('hide');
+	start.classList.add('hide');
+	gameArea.innerHTML="";
+	player.start=true;
+	player.score=0;
+	window.requestAnimationFrame(gameplay);
+
+	for( i=0;i<=6;i++){
+		let roadline= document.createElement('div');
+		roadline.setAttribute('class', 'dividerline');
+		roadline.y=(i*110)
+		roadline.style.top= roadline.y+"px";
+		gameArea.appendChild(roadline);
+
+	}
+
+	let plane=document.createElement('div');
+	plane.setAttribute('class','plane');
+	// plane.innerText= "Hey i am here to flight";
+	gameArea.appendChild(plane);
+
+	player.x=plane.offsetLeft;
+	player.y=plane.offsetTop;
+
+	// console.log("Top offset"+plane.offsetTop);
+	// console.log("left offset"+plane.offsetLeft);
+	let obstacle_color=["green","blue","pink","#fdcb6e"];
+	for( i=0;i<4;i++){
+		let obstacle= document.createElement('div');
+		obstacle.setAttribute('class', 'enemy');
+		obstacle.y=((i+1)*350)*-1;
+		obstacle.style.top= obstacle.y+"px";
+		obstacle.style.background=obstacle_color[i];
+		obstacle.style.border="1px solid blue";
+		obstacle.style.left=Math.floor(Math.random()*350)+'px';
+		gameArea.appendChild(obstacle);
+
+	}
+}
+
+function gameplay(){
+	// console.log('hey i am clicked');
+
+	let road= gameArea.getBoundingClientRect();
+	// console.log(road);
+
+	let plane=document.querySelector('.plane');
+	if(player.start){
+
+		movedividerline();
+		moveobstacle(plane);
+
+		if(keys.ArrowLeft && player.x>4){player.x -=player.speed}
+		if(keys.ArrowRight && player.x< road.width-82){player.x +=player.speed}
+		if(keys.ArrowUp && player.y>road.top+80){player.y -=player.speed}
+		if(keys.ArrowDown &&player.y<525){player.y +=player.speed}
+
+		plane.style.top=player.y+'px';
+		plane.style.left=player.x+'px';
+		window.requestAnimationFrame(gameplay);
+		console.log(player.score++);
+		player.score++;
+		score.innerText="SCORE : "+player.score;
+		if(player.score==4000){
+			player.speed=10;
+		}
+	}
+}
+
+function movedividerline(){
+	let divider=document.querySelectorAll('.dividerline');
+	divider.forEach(function(item){
+
+		if(item.y==650){
+			item.y=0;
+
+		}
+		item.y +=player.speed;
+		item.style.top=(item.y)+'px';
+	})
+}
+
+function moveobstacle(plane){
+	let barrier=document.querySelectorAll('.enemy');
+	barrier.forEach(function(item){
+
+		if(iscollide(plane,item)){
+			// console.log("Bang collision");
+			endgame();
+			
+		}
+
+		if(item.y==650){
+			item.y=-200;
+			item.style.left=Math.floor(Math.random()*350)+'px';
+		}
+		item.y +=player.speed;
+		item.style.top=(item.y)+'px';
+	})
+}
+
+function iscollide(a,b){
+	aRect=a.getBoundingClientRect();
+	bRect=b.getBoundingClientRect();
+
+	return !(aRect.bottom<bRect.top || aRect.left>bRect.right || aRect.top>bRect.bottom || aRect.right<bRect.left);
+}
+
+function endgame(){
+	player.start=false;
+	start.innerText="Game Over !!!";
+	start.classList.remove('hide');
+	start.append("Click here to start");
+}
+</script>
+</html>
