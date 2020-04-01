@@ -1,0 +1,25 @@
+<script type="text/javascript">
+
+document.write('see the inspect');
+	const person={
+		name:'krishna ojha',
+		location:'palpa',
+		contact:'353225253',
+
+		sum:function(){
+			console.log(this.name); //print the 'krishna ojha'
+			var add=2+2;
+			console.log("the sum is"+add); //print the value of add
+			console.log(this);  //print the whole person object i.e owner object.
+
+			function child(){
+				var name='yahoo!!';
+				console.log("the method child says "+name); //print the 'yahoo!!'
+				console.log(this);  //print the global object i.e window
+			}
+			child();
+
+		}
+	} 
+person.sum();
+</script>

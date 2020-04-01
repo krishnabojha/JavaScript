@@ -1,0 +1,49 @@
+<!-- Normal case -->
+<script type="text/javascript">
+
+document.write("Normal cases...<br>");
+function sum(a,b){
+	c=a+b;
+	console.log(c);
+	document.write(c);
+}
+
+sum(5,7);
+</script>
+
+<!-- Hosting in Javascript -->
+<!-- HERE IN THE HOSTING THE CODE IS ARRANGED AS NORMAL CASES BY SHIFTING DECLARING FUNCTION AND IS CALLED CREATION PHASE   -->
+<script type="text/javascript">
+document.write("<br>Hosting cases...<br>")
+sum(5,9);
+
+function sum(a,b){
+	c=a+b;
+	console.log(c);
+	document.write(c);
+}
+
+</script>
+
+<!-- Where hosting does not work -->
+
+<script type="text/javascript">
+// sum(2,9);  //not works
+var sum=function(a,b){
+	c=a+b;
+	document.write(c);
+}
+// sum(2,9); //works
+</script>
+
+<!-- Akma script -->
+<script type="text/javascript">
+
+document.write("<br>Akma script<br>");
+sum(1,8);  //not work
+const sum=(a,b) => {
+	return (a+b);
+	
+}
+
+</script>
