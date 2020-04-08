@@ -1,0 +1,15 @@
+<script type="text/javascript">
+	//Imediately invoked function Expression(IIFE) is used make data private and loads the function always.
+	//() is grouping operator and (); in last is called invoking expression
+	(function(){
+		var name="Krishna ojha";
+		document.write("My name is "+name);
+	})();
+	// document.write(name); //name is not accessable here.
+//OR
+//Passing parameter
+	(function(name){
+		document.write("<br>My name is "+name);
+	})('Jeevan bro');
+
+</script>

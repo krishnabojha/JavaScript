@@ -1,0 +1,51 @@
+<script type="text/javascript">
+//problem
+	function FuncA(){
+		setTimeout(function(){
+			document.write('<br>This is functionA.');
+
+		},3000);
+	}
+
+	function FuncB(){
+		document.write('<br>This is functionB.');
+	}
+//here FuncA is called first and then FuncB but due to the time period it runs the FuncB first and destroy the sequence.
+// To overcome from this problem we use callback function. 
+	FuncA();
+	FuncB();
+</script>
+
+<!-- solution -->
+
+<script type="text/javascript">
+	document.write("<br>second script section:");
+	//method 1
+	function FuncA(){
+		setTimeout(function(){
+			document.write('<br>This is functionA.');
+			FuncB();
+		},3000);
+		
+	}
+
+	function FuncB(){
+		document.write('<br>This is functionB.');
+	}
+
+	FuncA();
+
+	//method 2
+	const person1=(friend,callfrnd)=>{
+		document.write("<br>This is "+friend);
+		callfrnd();
+	}
+
+	const person2=()=>{
+		document.write("<br>This is Hari");
+
+	}
+
+	person1("krishna ojha",person2);  //calling the function using function name as a argument is called callback function.
+
+</script>

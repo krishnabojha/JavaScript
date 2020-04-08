@@ -1,0 +1,41 @@
+<script type="text/javascript">
+	const youtube=function(){
+		document.write('Thaks for your love and support.');
+
+	}
+	youtube();
+
+	const profile={
+		name:"krishna ojha",
+		education:"Communication Engineering",
+		qualification: function(){
+			document.write("<br>I am inside profile."+"and i am a communication engineer.");
+
+		}
+	}
+	profile.qualification();
+
+	const country=()=>{
+		return "NEpali";
+	}
+
+	const religon=(a,b)=>{
+		document.write("<br>"+b+a()+" hindu.");
+	}
+	religon(country,'I am ');
+
+
+	function thankyou(){
+		return function wow(){
+			document.write("<br>Thank you for all well wishers to your love and support.");
+		}
+	}
+	//method 1
+	thankyou()();
+
+	//method 2
+	document.write("<br>method 2");
+	const c=thankyou();
+	c();
+
+</script>

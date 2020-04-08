@@ -1,0 +1,29 @@
+<script>
+	const program=['javascript','PHP','java','c','python'];
+	for (val of program){
+		document.write('<br>'+val);
+	}
+	for (val of 'program'){
+		document.write('<br>'+val);
+	}
+
+	// for in loop 
+	for (val in 'program'){
+		document.write('<br>'+val);
+	}
+	const data={
+		name:'krishna',
+		class: 'bex',
+		age:22
+	}
+
+	for(prop in data){
+		document.write(prop);
+	}
+
+	document.write(`<br>wow game<br>`.repeat(10));
+	document.write(`krishna`.startsWith('k'));
+	document.write(`krishna`.endsWith('a'));
+	document.write(`krishna`.includes('ris'));
+
+</script>

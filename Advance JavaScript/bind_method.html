@@ -1,0 +1,37 @@
+<script>
+	const youtuber={
+		name:"Krishna ojha",
+		content: "problem solving",
+		feature: function(){
+			document.write(`${this.name} is my favourite channel and the content is ${this.content}.`);
+		}
+	}
+	// youtuber1.feature();
+	const youtuberFun= youtuber.feature.bind(youtuber);
+	youtuberFun();
+</script>
+
+<script>
+	
+	const youtuber1={
+		name:"Krishna ojha1",
+		content: "problem solving1",
+		
+	}
+	const youtuber2={
+		name:"Krishna ojha2",
+		content: "problem solving2",
+		
+	}
+	const youtuber3={
+		name:"Krishna ojha3",
+		content: "problem solving3",
+		
+	}
+	function features(rating){
+			document.write(`<br>${this.name} is my favourite channel and the content is ${this.content}. I will love to give ${rating}.`);
+	}
+
+	let you1 = features.bind(youtuber2);
+	you1(5);
+</script>

@@ -1,0 +1,59 @@
+<!-- Closure in action that is inner function can have access to the outerfunction variables as well as all the global variables. -->
+<script>
+	const outerFun =(a) =>{
+		let b =10;
+		const innerFun = () =>{
+			let sum= a+b;
+			document.write(`The sum of two number is ${sum}.`)
+		}
+		innerFun();
+	}
+	outerFun(8);
+</script>
+
+<!-- OR -->
+
+<script>
+	const outerFun =(a) =>{
+		let b =10;
+		const innerFun = () =>{
+			let sum= a+b;
+			document.write(`The sum of two number is ${sum}.`)
+		}
+		return innerFun;
+	}
+	const inner=outerFun(6);
+	console.dir(inner);  //see the console
+	inner();
+
+</script>
+
+<!-- Exercise on closure -->
+<script>
+	document.write("<br>section -3");
+	const interViewQuestion = (name) =>{
+		return function(topic){
+			if(name== "Binod"){
+				document.write(`<br>Hi. ${name}. please explain what is ${topic}.`);
+				
+			}else if(name== "Krishna"){
+				document.write(`<br>Hi. ${name}. please explain what is ${topic}.`);
+				
+			}else if(name== "chanda"){
+				document.write(`<br>Hi. ${name}. please explain what is ${topic}.`);
+				
+			}
+			else{
+				document.write("<br>welcome to Thappathali campus.");
+			}
+		}
+
+	}
+	const candidate = interViewQuestion('Binod');
+	candidate('UI/UX');
+	const candidate2 = interViewQuestion('Krishna');
+	candidate2('DBMS');
+
+	interViewQuestion('Binod')('interface');
+	interViewQuestion('chanda')('food');
+</script>

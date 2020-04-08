@@ -1,0 +1,36 @@
+
+<!-- Returning the function is called high order function -->
+<script type="text/javascript">
+	const interviewQuestion=(name)=>{
+		if(name==="krishna"){
+			return function(topic){
+				document.write(`<br>Hi ${name}. what is ${topic}?. Please explain.`);
+			}
+		}
+		if(name==="jeevan"){
+			return function(topic){
+				document.write(`<br>Hi ${name}. what is ${topic}?. Please explain.`);
+			}
+	}
+	if(name==="binod"){
+			return function(topic){
+				document.write(`<br>Hi ${name}. what is ${topic}?. Please explain.`);
+			}
+		}
+		else{
+			return function(){
+				document.write("<br>welcome to interview");
+			}
+		}
+}
+// interviewQuestion("binod")("interface");
+// interviewQuestion("krsihna")("science");
+// interviewQuestion("jeevan")("semiconductor");
+
+const quest=interviewQuestion('krishna');
+quest('FM');
+quest('Bandwidth');
+quest('DSBAM');
+quest('Activation function');
+
+</script>
